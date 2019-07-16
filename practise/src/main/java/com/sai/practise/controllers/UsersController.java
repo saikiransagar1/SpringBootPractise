@@ -1,6 +1,7 @@
 package com.sai.practise.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -26,10 +27,19 @@ public class UsersController {
 		
 	}
 	
-	@PostMapping(value = "/api/v1/user2")
+	@PostMapping(value = "/api/v1/user")
 	public User createUser(@RequestBody User user) {
 		System.out.println(user.getFirstName());
+		
+		userService.addUser(user);
 		return user;
+		
+	}
+	
+	@DeleteMapping(value = "/api/v1/user")
+	public void deleteUser(@RequestParam(name = "id") int id) {
+		userService.deleteUser(id);
+		
 		
 	}
 	
